@@ -3,16 +3,22 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
+
+export interface IBillApiCredentials {
+	server: string;
+	apiKey: string;
+}
+
 export class IBillApi implements ICredentialType {
 	name = 'iBillApi';
-	displayName = 'iBILL.io API';
+	displayName = 'iBill.io API';
 	documentationUrl = 'iBill';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'iBILL Server',
 			name: 'server',
 			type: 'string',
-			default: '',
+			default: 'https://ibill.io',
 		},
 		{
 			displayName: 'iBILL API Key',

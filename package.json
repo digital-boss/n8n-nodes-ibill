@@ -1,5 +1,5 @@
 {
-  "name": "@digital-boss/n8n-nodes-starter",
+  "name": "@digital-boss/n8n-nodes-ibill",
   "version": "0.1.0",
   "description": "FriendGrid support for n8n.",
   "license": "SEE LICENSE IN LICENSE.md",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/digital-boss/n8n-nodes-starter.git"
+    "url": "git+https://github.com/digital-boss/n8n-nodes-ibill.git"
   },
   "keywords": [
     "n8n",
@@ -44,7 +44,7 @@
       "dist/credentials/IBillApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/FriendGrid/FriendGrid.node.js"
+      "dist/nodes/IBill/IBill.node.js"
     ]
   },
   "devDependencies": {
