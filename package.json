@@ -41,7 +41,7 @@
   ],
   "n8n": {
     "credentials": [
-      "dist/credentials/FriendGridApi.credentials.js"
+      "dist/credentials/IBillApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/FriendGrid/FriendGrid.node.js"
