@@ -22,6 +22,12 @@ import {
 } from 'request';
 
 import { version } from '../version';
+import {
+	customerFields,
+	productFields,
+	serviceFields,
+	sessionFields
+} from './descriptions';
 
 export class IBill implements INodeType {
 	description: INodeTypeDescription = {
@@ -47,13 +53,35 @@ export class IBill implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'LaLa',
-				name: 'lala',
-				type: 'string',
-				default: '',
-				description: 'ToDo: remove it',
+				displayName: 'Resource',
+				name: 'resource',
+				type: 'options',
+				noDataExpression: true,
+				options: [
+					{
+						name: 'Customer',
+						value: 'customer',
+					},
+					{
+						name: 'Product',
+						value: 'product',
+					},
+					{
+						name: 'Service',
+						value: 'service',
+					},
+					{
+						name: 'Session',
+						value: 'session',
+					},
+				],
+				default: 'customer',
 			},
-		], // iBillNodeFields,
+			...customerFields,
+			...productFields,
+			...serviceFields,
+			...sessionFields,
+		],
 	};
 
 	methods = {
