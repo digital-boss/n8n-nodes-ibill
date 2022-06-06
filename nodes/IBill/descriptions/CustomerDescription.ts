@@ -38,7 +38,7 @@ const customerEntity: INodeProperties[] = [
 		description: 'Tags associated with this customer',
 	},
 	{
-		displayName: 'Phone number',
+		displayName: 'Phone Number',
 		name: 'phone_number',
 		type: 'string',
 		default: '',
@@ -62,7 +62,7 @@ const customerEntity: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Сity',
+		displayName: 'City',
 		name: 'city',
 		type: 'string',
 		default: '',
@@ -101,13 +101,13 @@ const customerEntity: INodeProperties[] = [
 		displayName: 'Tax Rate',
 		name: 'tax_rate',
 		type: 'number',
-		default: '',
+		default: 0,
 	},
 	{
 		displayName: 'Discount Percent',
 		name: 'discount_pct',
 		type: 'number',
-		default: '',
+		default: 0,
 	},
 	{
 		displayName: 'Discount Expires',
@@ -125,13 +125,13 @@ const customerEntity: INodeProperties[] = [
 		displayName: 'GPS Latitude',
 		name: 'gps_lat',
 		type: 'number',
-		default: '',
+		default: 0,
 	},
 	{
 		displayName: 'GPS Longitude',
 		name: 'gps_long',
 		type: 'number',
-		default: '',
+		default: 0,
 	},
 	{
 		displayName: 'Do Not Suspend',
@@ -175,7 +175,7 @@ const getAllFields: INodeProperties[] = h.showFor(resource, 'getAll', cmn.getLis
 const updateFields: INodeProperties[] = h.showFor(resource, 'update', [
 	h.getField(customerEntity, 'id', {required: true}),
 	{
-		displayName: 'Fields to update',
+		displayName: 'Fields to Update',
 		name: 'additionalFields',
 		type: 'collection',
 		placeholder: 'Add Field',

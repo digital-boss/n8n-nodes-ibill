@@ -30,7 +30,7 @@ const listActiveFields: INodeProperties[] = h.showFor(resource, 'listActive', [
 		type: 'options',
 		options: [
 			{
-				name: 'start',
+				name: 'Start',
 				value: 'start',
 			},
 		],
@@ -59,7 +59,7 @@ const listActiveForServiceFields: INodeProperties[] = h.showFor(resource, 'listA
 		displayName: 'Service ID',
 		name: 'id',
 		type: 'number',
-		default: '',
+		default: 0,
 		required: true,
 	},
 	...cmn.getListFields(),
