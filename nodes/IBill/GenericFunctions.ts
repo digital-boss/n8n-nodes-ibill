@@ -78,7 +78,6 @@ export class ResourceApiBase {
 	// tslint:disable-next-line: no-any
 	protected execute = async (path: string, coreOpts: CoreOptions): Promise<any> => {
 		const opts = this.buildRequest(path, coreOpts);
-		//console.log(opts);
 		return await this.execFns.helpers.request!(opts);
 	}
 
@@ -122,12 +121,8 @@ export class OperationExecutor {
 
 		const resourceApi = new res(execFns, creds);
 
-		//console.log(resourceApi.constructor);
-
 		// tslint:disable-next-line: no-any
 		const op = (resourceApi as any)[operation];
-
-		//console.log(op.toString());
 
 		if (!op) {
 			throw new Error(`Resource '${resource}' has no operation '${operation}'`);

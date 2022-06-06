@@ -97,19 +97,6 @@ export class IBill implements INodeType {
 		const resource = this.getNodeParameter('resource', 0) as string;
 		const operationName = this.getNodeParameter('operation', 0) as string;
 
-		// [
-		// 	'name',
-		// 	'email',
-		// 	'tags',
-		// 	'additionalFields',
-		// ].forEach(i => {
-		// 	const p = this.getNodeParameter(i, 0);
-		// 	console.log(`param ${i}: `);
-		// 	console.log(p);
-		// });
-
-		//return [this.helpers.returnJsonArray(returnData)];
-
 		// tslint:disable-next-line: no-any
 		let operation: OperationExecutor;
 		try {
@@ -121,7 +108,6 @@ export class IBill implements INodeType {
 		for (let itemIndex = 0; itemIndex < length; itemIndex++) {
 			try {
 				const result = await operation.execute(itemIndex);
-				console.log(result);
 				if (result.constructor === Array) {
 					returnData.push.apply(returnData, result);
 				} else {
