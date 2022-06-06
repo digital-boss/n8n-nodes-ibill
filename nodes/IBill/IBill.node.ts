@@ -97,7 +97,6 @@ export class IBill implements INodeType {
 		const resource = this.getNodeParameter('resource', 0) as string;
 		const operationName = this.getNodeParameter('operation', 0) as string;
 
-		// tslint:disable-next-line: no-any
 		let operation: OperationExecutor;
 		try {
 			operation = new OperationExecutor(resourceTypes, resource, operationName, this, credentials);
