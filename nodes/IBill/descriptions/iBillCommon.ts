@@ -1,3 +1,7 @@
+/**
+ * Common descriptions, specific to iBill API
+ */
+
 import {
 	INodeProperties
 } from 'n8n-workflow';

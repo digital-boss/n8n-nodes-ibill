@@ -1,3 +1,7 @@
+/**
+ * Generic functions, helping to describe any API.
+ */
+
 import {
 	IDataObject,
 	IDisplayOptions,
