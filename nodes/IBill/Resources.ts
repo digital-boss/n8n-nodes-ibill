@@ -85,6 +85,12 @@ class Service extends ResourceApiBase {
 		}).then(this.strip(r => r.data_service));
 	};
 
+	get = async () => {
+		return this.execute('/service/:id', {
+			method: 'GET',
+		}).then(this.strip(r => r.service));
+	};
+
 	getAll = async () => {
 		return this.execute('/services', {
 			method: 'GET',

@@ -7,7 +7,7 @@ const resource = 'service';
 const operations: INodeProperties[] = h.showFor(resource, undefined, [
 	h.createOperation(
 		[
-			...h.getCommonOperations('Service', 'Services', undefined, ['delete', 'get']),
+			...h.getCommonOperations('Service', 'Services', undefined, ['delete']),
 			{
 				name: 'Get by Username',
 				value: 'getByUsername',
@@ -158,6 +158,10 @@ const getByUsernameFields: INodeProperties[] = h.showFor(resource, 'getByUsernam
 	h.getField(serviceEntity, 'username', {required: true}),
 ]);
 
+const getFields: INodeProperties[] = h.showFor(resource, 'get', [
+	h.getField(serviceEntity, 'id', {required: true}),
+]);
+
 const getAllFields: INodeProperties[] = h.showFor(
 	resource,
 	'getAll',
@@ -218,6 +222,7 @@ export const serviceFields: INodeProperties[] = Array.prototype.concat(
 	operations,
 	createFields,
 	getByUsernameFields,
+	getFields,
 	getAllFields,
 	updateFields,
 	scheduleSuspensionFields,
