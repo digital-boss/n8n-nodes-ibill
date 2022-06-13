@@ -6,7 +6,19 @@
 
 import { IResourceTypes, ResourceApiBase } from './GenericFunctions';
 
-class Customer extends ResourceApiBase {
+
+class IBillApiBase extends ResourceApiBase {
+	getOffsetLimit = () => {
+		// tslint:disable-next-line: no-any
+		const offsetLimit = this.getParam('offsetAndLimit') as any;
+		if (offsetLimit.offsetAndLimitValues) {
+			return offsetLimit.offsetAndLimitValues;
+		}
+		return {};
+	}
+}
+
+class Customer extends IBillApiBase {
 
 	create = async () => {
 		return this.execute('/customer/create', {
@@ -33,10 +45,7 @@ class Customer extends ResourceApiBase {
 	getAll = async () => {
 		return this.execute('/customers', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getOffsetLimit(),
 		}).then(this.strip(r => r.customers));
 	};
 
@@ -49,7 +58,7 @@ class Customer extends ResourceApiBase {
 	};
 }
 
-class Product extends ResourceApiBase {
+class Product extends IBillApiBase {
 	get = async () => {
 		return this.execute('/product/:id', {
 			method: 'GET',
@@ -59,15 +68,12 @@ class Product extends ResourceApiBase {
 	getAll = async () => {
 		return this.execute('/products', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getOffsetLimit(),
 		}).then(this.strip(r => r.products));
 	};
 }
 
-class Service extends ResourceApiBase {
+class Service extends IBillApiBase {
 
 	create = async () => {
 
@@ -94,10 +100,7 @@ class Service extends ResourceApiBase {
 	getAll = async () => {
 		return this.execute('/services', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getOffsetLimit(),
 		}).then(this.strip(r => r.services));
 	};
 
@@ -132,27 +135,22 @@ class Service extends ResourceApiBase {
 
 }
 
-class Session extends ResourceApiBase {
+class Session extends IBillApiBase {
 
 	listActive = async () => {
 		return this.execute('/radius/sessions/active', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
+			qs: Object.assign(this.getParams([
 				'order_field',
 				'order_dir',
-			]),
+			]), this.getOffsetLimit()),
 		}).then(this.strip(r => r.active_sessions));
 	};
 
 	listActiveForService = async () => {
 		return this.execute('/radius/sessions/service_active/:id', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getOffsetLimit(),
 		}).then(this.strip(r => r.active_sessions));
 	};
 
