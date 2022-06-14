@@ -5,13 +5,13 @@
 import { INodeProperties } from 'n8n-workflow';
 
 export const getListFields = (): INodeProperties => ({
-	displayName: 'Offset & Limit',
-	name: 'offsetAndLimit',
+	displayName: 'Query Parameters',
+	name: 'queryParameters',
 	type: 'fixedCollection',
-	placeholder: 'Set Offset and Limit',
+	placeholder: 'Add Parameter',
 	default: {},
 	options: [{
-			name: 'offsetAndLimitValues',
+			name: 'offsetAndLimit',
 			displayName: 'Offset & Limit',
 			values: [
 				{

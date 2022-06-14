@@ -10,9 +10,9 @@ import { IResourceTypes, ResourceApiBase } from './GenericFunctions';
 class IBillApiBase extends ResourceApiBase {
 	getOffsetLimit = () => {
 		// tslint:disable-next-line: no-any
-		const offsetLimit = this.getParam('offsetAndLimit') as any;
-		if (offsetLimit.offsetAndLimitValues) {
-			return offsetLimit.offsetAndLimitValues;
+		const queryParameters = this.getParam('queryParameters') as any;
+		if (queryParameters.offsetAndLimit) {
+			return queryParameters.offsetAndLimit;
 		}
 		return {};
 	}
