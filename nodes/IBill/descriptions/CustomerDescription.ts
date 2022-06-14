@@ -170,7 +170,7 @@ const getFields: INodeProperties[] = h.showFor(resource, 'get', [
 	h.getField(customerEntity, 'id', {required: true}),
 ]);
 
-const getAllFields: INodeProperties[] = h.showFor(resource, 'getAll', cmn.getListFields());
+const getAllFields: INodeProperties[] = h.showFor(resource, 'getAll', [cmn.getListFields()]);
 
 const updateFields: INodeProperties[] = h.showFor(resource, 'update', [
 	h.getField(customerEntity, 'id', {required: true}),

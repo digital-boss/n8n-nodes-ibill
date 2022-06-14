@@ -33,10 +33,7 @@ class Customer extends ResourceApiBase {
 	getAll = async () => {
 		return this.execute('/customers', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.customers));
 	};
 
@@ -59,10 +56,7 @@ class Product extends ResourceApiBase {
 	getAll = async () => {
 		return this.execute('/products', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.products));
 	};
 }
@@ -94,10 +88,7 @@ class Service extends ResourceApiBase {
 	getAll = async () => {
 		return this.execute('/services', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.services));
 	};
 
@@ -137,22 +128,17 @@ class Session extends ResourceApiBase {
 	listActive = async () => {
 		return this.execute('/radius/sessions/active', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
+			qs: Object.assign(this.getParams([
 				'order_field',
 				'order_dir',
-			]),
+			]), this.getParam('queryParameters')),
 		}).then(this.strip(r => r.active_sessions));
 	};
 
 	listActiveForService = async () => {
 		return this.execute('/radius/sessions/service_active/:id', {
 			method: 'GET',
-			qs: this.getParams([
-				'limit',
-				'offset',
-			]),
+			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.active_sessions));
 	};
 

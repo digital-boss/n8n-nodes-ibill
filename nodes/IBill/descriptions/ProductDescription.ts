@@ -13,7 +13,7 @@ const operations: INodeProperties[] = h.showFor(resource, undefined, [h.createOp
 
 const getFields: INodeProperties[] = h.showFor(resource, 'get', [cmn.getIdField('Product ID')]);
 
-const getAllFields: INodeProperties[] = h.showFor(resource, 'getAll', cmn.getListFields());
+const getAllFields: INodeProperties[] = h.showFor(resource, 'getAll', [cmn.getListFields()]);
 
 export const productFields: INodeProperties[] = Array.prototype.concat(
 	operations,

@@ -23,7 +23,6 @@ const operations: INodeProperties[] = h.showFor(resource, undefined, [h.createOp
 )]);
 
 const listActiveFields: INodeProperties[] = h.showFor(resource, 'listActive', [
-	...cmn.getListFields(),
 	{
 		displayName: 'Order Field',
 		name: 'order_field',
@@ -52,6 +51,7 @@ const listActiveFields: INodeProperties[] = h.showFor(resource, 'listActive', [
 		],
 		default: 'asc',
 	},
+	cmn.getListFields(),
 ]);
 
 const listActiveForServiceFields: INodeProperties[] = h.showFor(resource, 'listActiveForService', [
@@ -62,7 +62,7 @@ const listActiveForServiceFields: INodeProperties[] = h.showFor(resource, 'listA
 		default: 0,
 		required: true,
 	},
-	...cmn.getListFields(),
+	cmn.getListFields(),
 ]);
 
 export const sessionFields: INodeProperties[] = Array.prototype.concat(
