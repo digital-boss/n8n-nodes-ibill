@@ -44,7 +44,7 @@ export class ResourceApiBase {
 		const matches = path.match(rx);
 		if (matches && matches.length > 0) {
 			matches.forEach((match, i) => {
-				const value = this.getParam<string>(match.slice(1));
+				const value = this.getParam(match.slice(1)) as string;
 				if (value !== undefined) {
 					path = path.replace(match, value);
 				}
@@ -81,13 +81,18 @@ export class ResourceApiBase {
 		return await this.execFns.helpers.request!(opts);
 	}
 
-	protected getParam = <TRes>(name: string): TRes => {
-		return this.execFns.getNodeParameter(name, this.indexItem) as unknown as TRes;
+	// tslint:disable-next-line: no-any
+	protected getParam = (name: string): any => {
+		const value = this.execFns.getNodeParameter(name, this.indexItem);
+		if (value === false) {
+			return undefined;
+		}
+		return value;
 	}
 
 	protected getParams = (names: string[]): IDataObject => {
 		return names.reduce((acc, name) => {
-			const value = this.getParam<string>(name);
+			const value = this.getParam(name);
 			if (value !== undefined) {
 				acc[name] = value;
 			}
