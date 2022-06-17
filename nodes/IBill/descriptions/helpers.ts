@@ -11,10 +11,11 @@ import {
 } from 'n8n-workflow';
 import { resourceLimits } from 'worker_threads';
 
+import merge from 'lodash.merge';
 
 export const showFor = (resource: string|undefined, operation: string|undefined, fields: INodeProperties[]) => {
 	return fields.map(i => Object.assign({}, i, {
-		displayOptions: getDisplayOptionsFor(resource, operation),
+		displayOptions: merge(getDisplayOptionsFor(resource, operation), i.displayOptions),
 	}));
 };
 
@@ -105,4 +106,15 @@ export const getCommonOperations = (entity: string, entityPlural: string, includ
 	}
 
 	return list;
+};
+
+export const makeOptionalFields = (options: INodeProperties[]): INodeProperties => {
+	return {
+		displayName: 'Query Parameters',
+		name: 'queryParameters',
+		type: 'collection',
+		placeholder: 'Add Parameter',
+		default: [],
+		options,
+	};
 };
