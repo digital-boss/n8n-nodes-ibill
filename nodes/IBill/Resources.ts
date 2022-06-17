@@ -128,15 +128,26 @@ class Session extends ResourceApiBase {
 	listActive = async () => {
 		return this.execute('/radius/sessions/active', {
 			method: 'GET',
-			qs: Object.assign(this.getParams([
-				'order_field',
-				'order_dir',
-			]), this.getParam('queryParameters')),
+			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.active_sessions));
 	};
 
 	listActiveForService = async () => {
 		return this.execute('/radius/sessions/service_active/:id', {
+			method: 'GET',
+			qs: this.getParam('queryParameters'),
+		}).then(this.strip(r => r.active_sessions));
+	};
+
+	listHistory = async () => {
+		return this.execute('/radius/sessions/history', {
+			method: 'GET',
+			qs: this.getParam('queryParameters'),
+		}).then(this.strip(r => r.active_sessions));
+	};
+
+	listHistoryForService = async () => {
+		return this.execute('/radius/sessions/service_history/:id', {
 			method: 'GET',
 			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.active_sessions));

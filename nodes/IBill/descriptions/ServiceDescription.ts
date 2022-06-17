@@ -165,7 +165,7 @@ const getFields: INodeProperties[] = h.showFor(resource, 'get', [
 const getAllFields: INodeProperties[] = h.showFor(
 	resource,
 	'getAll',
-	[cmn.getListFields()],
+	[h.makeOptionalFields(cmn.getListFields())],
 );
 
 const updateFields: INodeProperties[] = h.showFor(resource, 'update', [
