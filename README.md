@@ -1,8 +1,36 @@
 # n8n-nodes-ibill
 
-![n8n.io - Workflow Automation](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
-
 iBill.io API automation.
+
+Customer
+
+		POST /customer/create
+		GET /customer/:id
+		GET /customers
+		PUT /customer/:id
+
+Product
+
+		GET /product/:id
+		GET /products
+
+Service
+
+		POST /services/data_service/create
+		GET /service/:id
+		GET /services
+		PUT /service/:id
+		GET /data_service/:username'
+		POST /service/:id/schedule_suspend
+		GET /service/:id/cancel_suspend
+
+Session
+
+		GET /radius/sessions/active
+		GET /radius/sessions/service_active/:id
+		GET /radius/sessions/history
+		GET /radius/sessions/service_history/:id
+
 
 ## Try it out with docker
 
@@ -41,17 +69,9 @@ npm link @digital-boss/n8n-nodes-ibill
 npx n8n
 ```
 
-# Latest functionality
-
-Displayed the package version in the node description. For reference, you can check [genversion](https://www.npmjs.com/package/genversion).
-
 # Contribution
 
-To make this node even better, please let us know, [how you use it](mailto:info@digital-north-consulting.com). Commits are always welcome.
-
-# Issues
-
-If you have any issues, please [let us know on GitHub](https://github.com/digital-boss/n8n-nodes-ibill/issues).
+To make this node even better, please let us know, [how you use it](mailto:info@digital-north-consulting.com). Commits are always welcome. If you have any issues, please [let us know on GitHub](https://github.com/digital-boss/n8n-nodes-ibill/issues).
 
 # About
 
