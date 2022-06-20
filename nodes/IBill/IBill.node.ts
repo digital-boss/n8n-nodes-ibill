@@ -1,31 +1,29 @@
-
-import {
-	IExecuteFunctions,
-} from 'n8n-core';
+import { IExecuteFunctions } from 'n8n-core';
 
 import {
 	IDataObject,
+	ILoadOptionsFunctions,
 	INodeExecutionData,
+	INodeProperties,
+	INodePropertyOptions,
 	INodeType,
 	INodeTypeDescription,
 	NodeOperationError,
 } from 'n8n-workflow';
 
-import {
-	OperationExecutor,
-} from './GenericFunctions';
+import { OperationExecutor } from './GenericFunctions';
 
 import { version } from '../version';
 import {
 	customerFields,
+	loadOrderFields,
 	productFields,
 	serviceFields,
-	sessionFields
+	sessionFields,
 } from './descriptions';
 import { IBillApiCredentials } from '../../credentials/IBillApi.credentials';
 import { resourceTypes } from './Resources';
 import { iBillApiTest } from './IBillApiTest';
-
 
 export class IBill implements INodeType {
 	description: INodeTypeDescription = {
@@ -86,10 +84,16 @@ export class IBill implements INodeType {
 		credentialTest: {
 			iBillApiTest,
 		},
+
+		loadOptions: {
+			loadOrderFields,
+		},
 	};
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const credentials = await this.getCredentials('iBillApi') as unknown as IBillApiCredentials;
+		const credentials = (await this.getCredentials(
+			'iBillApi',
+		)) as unknown as IBillApiCredentials;
 		const items = this.getInputData();
 		const length = items.length;
 		const returnData: IDataObject[] = [];
@@ -99,7 +103,13 @@ export class IBill implements INodeType {
 
 		let operation: OperationExecutor;
 		try {
-			operation = new OperationExecutor(resourceTypes, resource, operationName, this, credentials);
+			operation = new OperationExecutor(
+				resourceTypes,
+				resource,
+				operationName,
+				this,
+				credentials,
+			);
 		} catch (error) {
 			throw new NodeOperationError(this.getNode(), error);
 		}

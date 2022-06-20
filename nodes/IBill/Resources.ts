@@ -17,8 +17,7 @@ class Customer extends ResourceApiBase {
 					'email',
 					'tags',
 				]),
-				// tslint:disable-next-line: no-any
-				...this.getParam<any>('additionalFields'),
+				...this.getParam('additionalFields'),
 			},
 		}).then(this.strip(r => r.customer));
 	};
@@ -40,8 +39,7 @@ class Customer extends ResourceApiBase {
 	update  = async () => {
 		return this.execute('/customer/:id', {
 			method: 'PUT',
-			// tslint:disable-next-line: no-any
-			body: this.getParam<any>('additionalFields'),
+			body: this.getParam('additionalFields'),
 		}).then(this.strip(r => r.customer));
 	};
 }
@@ -73,8 +71,7 @@ class Service extends ResourceApiBase {
 					'customer_id',
 					'product_id',
 				]),
-				// tslint:disable-next-line: no-any
-				...this.getParam<any>('additionalFields'),
+				...this.getParam('additionalFields'),
 			},
 		}).then(this.strip(r => r.data_service));
 	};
@@ -82,6 +79,7 @@ class Service extends ResourceApiBase {
 	get = async () => {
 		return this.execute('/service/:id', {
 			method: 'GET',
+			qs: this.getParams(['external']),
 		}).then(this.strip(r => r.service));
 	};
 
@@ -95,8 +93,7 @@ class Service extends ResourceApiBase {
 	update = async () => {
 		return this.execute('/service/:id', {
 			method: 'PUT',
-			// tslint:disable-next-line: no-any
-			body: this.getParam<any>('additionalFields'),
+			body: this.getParam('additionalFields'),
 		}).then(this.strip(r => r.service));
 	};
 
@@ -128,15 +125,26 @@ class Session extends ResourceApiBase {
 	listActive = async () => {
 		return this.execute('/radius/sessions/active', {
 			method: 'GET',
-			qs: Object.assign(this.getParams([
-				'order_field',
-				'order_dir',
-			]), this.getParam('queryParameters')),
+			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.active_sessions));
 	};
 
 	listActiveForService = async () => {
 		return this.execute('/radius/sessions/service_active/:id', {
+			method: 'GET',
+			qs: this.getParam('queryParameters'),
+		}).then(this.strip(r => r.active_sessions));
+	};
+
+	listHistory = async () => {
+		return this.execute('/radius/sessions/history', {
+			method: 'GET',
+			qs: this.getParam('queryParameters'),
+		}).then(this.strip(r => r.active_sessions));
+	};
+
+	listHistoryForService = async () => {
+		return this.execute('/radius/sessions/service_history/:id', {
 			method: 'GET',
 			qs: this.getParam('queryParameters'),
 		}).then(this.strip(r => r.active_sessions));

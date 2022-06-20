@@ -160,12 +160,19 @@ const getByUsernameFields: INodeProperties[] = h.showFor(resource, 'getByUsernam
 
 const getFields: INodeProperties[] = h.showFor(resource, 'get', [
 	h.getField(serviceEntity, 'id', {required: true}),
+	{
+		name: 'external',
+		displayName: 'External',
+		description: 'Turn on to pull a service using the external id, off - using internal service id.',
+		type: 'boolean',
+		default: false,
+	},
 ]);
 
 const getAllFields: INodeProperties[] = h.showFor(
 	resource,
 	'getAll',
-	[cmn.getListFields()],
+	[h.makeOptionalFields(cmn.getListFields())],
 );
 
 const updateFields: INodeProperties[] = h.showFor(resource, 'update', [
