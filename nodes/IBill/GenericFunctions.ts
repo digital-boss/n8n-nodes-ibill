@@ -56,7 +56,14 @@ export class ResourceApiBase {
 	// tslint:disable-next-line: no-any
 	protected strip = (transformer?: (res: any) => any) => (res: any) => {
 		if (res.success) {
-			return transformer ? transformer(res) : res;
+			if (transformer) {
+				const value = transformer(res);
+				if (value === undefined) {
+					throw new NodeOperationError(this.execFns.getNode(), 'Transformer function returns undefined. If there is no data, return empty array or empty object.');
+				}
+				return value;
+			}
+			return res;
 		} else {
 			throw new NodeApiError(this.execFns.getNode(), res, { message: res.errMsg });
 		}

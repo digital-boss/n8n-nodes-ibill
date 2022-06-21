@@ -117,7 +117,10 @@ export class IBill implements INodeType {
 		for (let itemIndex = 0; itemIndex < length; itemIndex++) {
 			try {
 				const result = await operation.execute(itemIndex);
-				if (result.constructor === Array) {
+				if (result === undefined) {
+					throw new NodeOperationError(this.getNode(), 'Operation returns undefined. If there is no data, return empty array or empty object.');
+				}
+				else if (result.constructor === Array) {
 					returnData.push.apply(returnData, result);
 				} else {
 					returnData.push(result);

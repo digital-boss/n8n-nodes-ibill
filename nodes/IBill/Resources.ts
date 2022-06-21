@@ -140,14 +140,14 @@ class Session extends ResourceApiBase {
 		return this.execute('/radius/sessions/history', {
 			method: 'GET',
 			qs: this.getParam('queryParameters'),
-		}).then(this.strip(r => r.active_sessions));
+		}).then(this.strip(r => r.session_history));
 	};
 
 	listHistoryForService = async () => {
 		return this.execute('/radius/sessions/service_history/:id', {
 			method: 'GET',
 			qs: this.getParam('queryParameters'),
-		}).then(this.strip(r => r.active_sessions));
+		}).then(this.strip(r => r.session_history));
 	};
 
 }
