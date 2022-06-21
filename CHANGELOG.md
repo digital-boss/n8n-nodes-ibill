@@ -1,4 +1,4 @@
-## [0.1.3](https://github.com/digital-boss/n8n-nodes-ibill/compare/0.1.0...0.1.3) 2022-06-21
+## [0.1.4](https://github.com/digital-boss/n8n-nodes-ibill/compare/0.1.0...0.1.4) 2022-06-21
 
 ### Features
 
