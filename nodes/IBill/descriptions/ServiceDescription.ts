@@ -29,7 +29,12 @@ const operations: INodeProperties[] = h.showFor(resource, undefined, [
 ]);
 
 const serviceEntity: INodeProperties[] = [
-	cmn.getIdField('Service ID'),
+	{
+		displayName: 'Service ID',
+		name: 'id',
+		type: 'string',
+		default: '',
+	},
 	{
 		displayName: 'User Name',
 		name: 'username',
