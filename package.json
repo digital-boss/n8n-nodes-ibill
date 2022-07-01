@@ -2,7 +2,7 @@
   "name": "@digital-boss/n8n-nodes-ibill",
   "version": "0.1.4",
   "description": "FriendGrid support for n8n.",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "homepage": "https://n8n.io",
   "author": {
     "name": "Valentina Lilova",
